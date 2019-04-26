@@ -1,0 +1,73 @@
+<mvc:View controllerName="br.com.idxtecIndicePluviometro.controller.IndicePluviometro"
+xmlns:html="http://www.w3.org/1999/xhtml"
+xmlns:mvc="sap.ui.core.mvc"
+displayBlock="true"
+xmlns="sap.m"
+xmlns:t="sap.ui.table">
+	<App id="app">
+		<pages>
+			<Page showHeader="false" class="sapUiContentPadding" enableScrolling="false">
+				<content>
+					<t:Table id="tableIndice"
+						selectionMode="Single"
+						selectionBehavior="Row"
+						class="sapUiSizeCondensed"
+						visibleRowCountMode="Auto"
+						enableBusyIndicator="true"
+						alternateRowColors="true">
+						<t:toolbar>
+							<Toolbar>
+								<Title text="Lista de Índices"/>
+								<ToolbarSpacer/>
+								<SearchField placeholder="Pesquisar pluviômetro..." width="30%" search="filtraIndice"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column id="columnEmpresa" filtered="true" width="100px" >
+								<Label text="Empresa" wrapping="true"/>
+								<t:template>
+									<Text text="{Empresa}" wrapping="false"/>
+								</t:template>
+							</t:Column>
+							<t:Column id="columnPluviometro" filterProperty="PluviometroDetails/Descricao"
+								sortProperty="PluviometroDetails/Descricao">
+								<Label text="Pluviômetro"/>
+								<t:template>
+									<Text text="{PluviometroDetails/Descricao}"/> 
+								</t:template>
+							</t:Column>
+							<t:Column filterProperty="UnidadeMedidaDetails/Descricao" sortProperty="UnidadeMedidaDetails/Descricao">
+								<Label text="Unidade de Medida" />
+								<t:template>
+									<Text text="{UnidadeMedidaDetails/Descricao}"/> 
+								</t:template>
+							</t:Column>
+							<t:Column filterProperty="Quantidade" sortProperty="Quantidade">
+								<Label text="Quantidade"/>
+								<t:template>
+									<Text text="{Quantidade}"/> 
+								</t:template>
+							</t:Column>
+							<t:Column filterProperty="Observacoes" sortProperty="Observacoes">
+								<Label text="Observações"/>
+								<t:template>
+									<Text text="{Observacoes}"/> 
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button id="incluir" text="Incluir novo" press="onIncluir" type="Emphasized"/>
+						<Button id="editar" text="Editar" press="onEditar"/>
+						<Button id="remover" text="Remover" press="onRemover"/>
+						<ToolbarSeparator/>
+						<Button icon="sap-icon://refresh" press="onRefresh"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

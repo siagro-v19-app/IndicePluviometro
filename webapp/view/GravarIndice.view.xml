@@ -1,0 +1,86 @@
+<mvc:View xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	controllerName="br.com.idxtecIndicePluviometro.controller.GravarIndice"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:f="sap.ui.layout.form"> 
+	<App>
+		<pages>
+			<Page showHeader="false">
+				<content>
+					<VBox class="sapUiSmallMargin">
+						<Panel headerText="{view>/titulo}">
+							<f:SimpleForm id="formEquipamento"
+								editable="true"
+								layout="ResponsiveGridLayout"
+								labelSpanXL="4"
+								labelSpanL="4"
+								labelSpanM="4"
+								labelSpanS="12"
+								adjustLabelSpan="false"
+								emptySpanXL="0"
+								emptySpanL="0"
+								emptySpanM="0"
+								emptySpanS="0"
+								columnsXL="3"
+								columnsL="2"
+								columnsM="2"
+								singleContainerFullSize="false">
+								<core:Title/>
+								<Label text="Pluviômetro" labelFor="pluviometro"/>
+								<Input selectedKey="{path: 'model>/Pluviomentro', type: 'sap.ui.model.odata.type.Int32'}"
+									textFormatMode="KeyValue"
+									showSuggestion="true"
+									showValueHelp="true"
+									valueHelpRequest="handleSearchPluviometro"
+									suggestionItems="{
+										path: '/Pluviometros'
+									}"
+									id="pluviometro"
+									required="true">
+									<suggestionItems>
+										<core:ListItem key="{Id}" text="{Descricao}"/>
+									</suggestionItems>
+								</Input>
+								
+								<Label text="Unidade de Medida" labelFor="unidade" required="true"/>
+								<Input selectedKey="{path: 'model>/UnidadeMedida', type: 'sap.ui.model.odata.type.Int32'}"
+									textFormatMode="KeyValue"
+									showSuggestion="true"
+									showValueHelp="true"
+									valueHelpRequest="handleSearchUnidade"
+									suggestionItems="{
+										path: '/UnidadeMedidas'
+									}"
+									id="unidade"
+									required="true">
+									<suggestionItems>
+										<core:ListItem key="{Id}" text="{Descricao}"/>
+									</suggestionItems>
+								</Input>
+								
+								<Label text="Quantidade" labelFor="quantidade"/>
+								<Input id="quantidade" value="{path: 'model>/Quantidade', type: 'sap.ui.model.odata.type.Int32'}"
+									required="true"/>
+								
+								<Label text="Data" labelFor="data" required="true"/>
+								<DatePicker id="data" dateValue="{model>/Data}"
+									displayFormat="dd.MM.yyyy" placeholder="dd.mm.aaaa"/>
+									
+								<Label text="Observações" labelFor="observacoes"/>
+								<TextArea id="observacoes" value="{model>/Observacoes}" rows="6"/>
+							</f:SimpleForm> 
+						</Panel>
+					</VBox> 
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Salvar" press="onSalvar" type="Accept"/>
+   						<Button text="Fechar" press="onVoltar" type="Reject"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
