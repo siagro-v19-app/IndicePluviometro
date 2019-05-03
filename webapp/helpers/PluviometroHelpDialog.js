@@ -34,8 +34,10 @@ sap.ui.define([
 		_handleValueHelpClose : function (evt) {
 			var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
-				var oInput = sap.ui.getCore().byId(this._inputId); 
-				var sId = oSelectedItem.getDescription();
+				var oInput = sap.ui.getCore().byId(this._inputId);
+				var oCells = oSelectedItem.getCells();
+				
+				var sId = oCells[0].getNumber();
 
 				oInput.setSelectedKey(sId);
 			}

@@ -34,7 +34,7 @@ sap.ui.define([
 		},
 		
 		filtraIndice: function(oEvent){
-			var sQuery = oEvent.getParameter("query");
+			var sQuery = oEvent.getParameter("query").toUpperCase();
 			var oFilter1 = new Filter("Empresa", FilterOperator.EQ, Session.get("EMPRESA_ID"));
 			var oFilter2 = new Filter("PluviometroDetails/Descricao", FilterOperator.Contains, sQuery);
 			
